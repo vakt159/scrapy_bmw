@@ -48,7 +48,7 @@ class CarsPipeline:
                                 registration TEXT PRIMARY KEY,
                                 model        TEXT,
                                 name         TEXT,
-                                mileage      TEXT,
+                                mileage      INTEGER,
                                 registered   TEXT,
                                 engine       TEXT,
                                 range        TEXT,
@@ -69,10 +69,13 @@ class CarsPipeline:
                 item["mileage"],
                 item["registered"],
                 item["engine"],
-                item["range"],
+                item["electrical_range"],
                 item["exterior"],
                 item["fuel"],
                 item["transmission"],
                 item["upholstery"]))
-        self.conn.commit()
         return item
+
+    def close_spider(self, spider):
+        self.conn.commit()
+        self.conn.close()

@@ -12,7 +12,7 @@ class CarsItem(scrapy.Item):
     mileage = scrapy.Field()
     registered = scrapy.Field()
     engine = scrapy.Field()
-    range = scrapy.Field()
+    electrical_range = scrapy.Field()
     exterior = scrapy.Field()
     fuel = scrapy.Field()
     transmission = scrapy.Field()

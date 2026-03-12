@@ -41,7 +41,7 @@ class CarsSpider(scrapy.Spider):
                 )
 
         if current_page < self.MAX_PAGES:
-            next_url = f"https://usedcars.bmw.co.uk/result/?page={current_page + 1}&size=23"
+            next_url = response.urljoin(f"?page={current_page + 1}&size=23")
             yield scrapy.Request(
                 next_url,
                 meta={
@@ -79,6 +79,6 @@ class CarsSpider(scrapy.Spider):
         car["engine"] = str(engine_cc) if engine_cc else None
 
         range_value = data.get("consumption", {}).get("range", {}).get("values", {}).get("total")
-        car["range"] = str(range_value) if range_value else None
+        car["electrical_range"] = str(range_value) if range_value else None
 
         yield car
